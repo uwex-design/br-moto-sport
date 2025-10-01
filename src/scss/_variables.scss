@@ -14,3 +14,21 @@ $brms-background: #171717;
 $brms-primary: #E4002B;
 $brms-blue: rgba(38, 101, 180, 0.40);
 $brms-red: rgba(228, 0, 43, 0.30);
+
+// Breakpoints otimizados (apenas 3)
+$breakpoint: (
+  "desktop": 1280px, // Desktops e laptops
+  "tablet": 768px,   // Tablets
+  "mobile": 640px    // Smartphones
+);
+
+// Mixin responsivo
+@mixin responsivo($breakpoint-name) {
+  @if map-has-key($breakpoint, $breakpoint-name) {
+    @media (max-width: map-get($breakpoint, $breakpoint-name)) {
+      @content;
+    }
+  } @else {
+    @warn "Breakpoint não existe: #{$breakpoint-name}";
+  }
+}

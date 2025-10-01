@@ -8,6 +8,16 @@
   opacity: 0.6;
   transform: scale(0.95) translateZ(0);
   transition: all 0.4s ease-in-out;
+  
+  @include responsivo('tablet') {
+    opacity: 0.8;
+    transform: scale(0.98) translateZ(0);
+  }
+  
+  @include responsivo('mobile') {
+    opacity: 0.9;
+    transform: scale(1) translateZ(0);
+  }
 }
 
 .swiper-depoimentos.swiper-slide.swiper-slide-active {  
@@ -43,16 +53,40 @@
   box-shadow: 0 8px 25px rgba(0, 0, 0, 0.1);
   text-align: center;
   
+  @include responsivo('tablet') {
+    padding: 25px;
+    border-radius: 10px;
+  }
+  
+  @include responsivo('mobile') {
+    padding: 20px;
+    border-radius: 8px;
+  }
+  
   .depoimento-texto {
     font-style: italic;
     font-size: 1.1rem;
     line-height: 1.6;
     margin-bottom: 20px;
     color: $text-color;
+    
+    @include responsivo('tablet') {
+      font-size: 1rem;
+      margin-bottom: 15px;
+    }
+    
+    @include responsivo('mobile') {
+      font-size: 0.95rem;
+      margin-bottom: 12px;
+    }
   }
   
   .depoimento-autor {
     font-weight: bold;
     color: $brms-primary;
+    
+    @include responsivo('mobile') {
+      font-size: 0.9rem;
+    }
   }
 }
