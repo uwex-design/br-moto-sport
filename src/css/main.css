@@ -1,0 +1,111 @@
+/* BR Moto Sport - Estilos Principais */
+/* Arquivo: src/css/main.css */
+
+/* Importações dos módulos CSS */
+@import url('header.css');
+@import url('swiper-custom.css');
+@import url('sections.css');
+
+:root {
+  --primary-color: #ff6b35;
+  --secondary-color: #2c3e50;
+  --text-color: #333;
+  --bg-color: #ffffff;
+  
+  /* Cores específicas do projeto BR Moto Sport */
+  --BRMS-Background: #171717;
+  --BRMS-Primary: #E4002B;
+  --BRMS-Blue: rgba(38, 101, 180, 0.40);
+  --BRMS-Red: rgba(228, 0, 43, 0.30);
+}
+
+/* Reset básico */
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+body {
+  font-family: 'Arial', sans-serif;
+  line-height: 1.6;
+  color: var(--text-color);
+  background-color: var(--bg-color);
+}
+
+/* Classes utilitárias para Webflow */
+.text-primary {
+  color: var(--primary-color);
+}
+
+.bg-primary {
+  background-color: var(--primary-color);
+}
+
+.btn-primary {
+  background-color: var(--primary-color);
+  color: white;
+  padding: 12px 24px;
+  border: none;
+  border-radius: 4px;
+  cursor: pointer;
+  transition: all 0.3s ease;
+}
+
+.btn-primary:hover {
+  background-color: #e55a2b;
+  transform: translateY(-2px);
+}
+
+/* Estilos específicos para Webflow */
+.hero-section {
+  background: linear-gradient(135deg, var(--primary-color), var(--secondary-color));
+  padding: 80px 0;
+  text-align: center;
+  color: white;
+}
+
+.hero-title {
+  font-size: 3rem;
+  font-weight: bold;
+  margin-bottom: 20px;
+  animation: fadeInUp 1s ease-out;
+}
+
+.hero-subtitle {
+  font-size: 1.2rem;
+  opacity: 0.9;
+  margin-bottom: 30px;
+}
+
+/* Cards de produtos */
+.product-card {
+  background: white;
+  border-radius: 8px;
+  padding: 20px;
+  box-shadow: 0 4px 6px rgba(0,0,0,0.1);
+  transition: transform 0.3s ease;
+}
+
+.product-card:hover {
+  transform: translateY(-5px);
+}
+
+/* Menu responsivo */
+.mobile-menu {
+  display: none;
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100vh;
+  background: var(--secondary-color);
+  z-index: 1000;
+}
+
+.mobile-menu.active {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+}

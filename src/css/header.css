@@ -1,0 +1,27 @@
+/* BR Moto Sport - Estilos Header/Navegação */
+/* Arquivo: src/css/header.css */
+
+/* Header com dropdown */
+header.dropdown-open .nav_content {
+  background: rgba(11, 0, 2, 0.60);
+  border-radius: 24px 24px 0 0;
+  border-bottom: none;
+}
+
+/* Controle de eventos do dropdown */
+header .dropdown-menu {
+  pointer-events: none;
+}
+
+header.dropdown-open .dropdown-menu {
+  pointer-events: all;
+}
+
+/* Animações suaves para dropdown */
+header .nav_content {
+  transition: all 0.3s ease-in-out;
+}
+
+header .dropdown-menu {
+  transition: opacity 0.3s ease-in-out;
+}

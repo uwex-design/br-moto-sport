@@ -1,0 +1,27 @@
+/* BR Moto Sport - Seções Especiais */
+/* Arquivo: src/css/sections.css */
+
+/* Seção Marcas Team com gradiente radial */
+.section_marcas_team {
+  background: 
+    radial-gradient(41.27% 50% at 0% 38.8%, rgba(38, 101, 180, 0.40) 0%, rgba(38, 101, 180, 0.00) 100%), 
+    radial-gradient(28% 33.92% at 100% 68.86%, rgba(228, 0, 43, 0.30) 0%, rgba(228, 0, 43, 0.00) 100%), 
+    var(--BRMS-Background, #171717);
+}
+
+/* Variáveis CSS para cores do projeto */
+:root {
+  --BRMS-Background: #171717;
+  --BRMS-Primary: #E4002B;
+  --BRMS-Blue: rgba(38, 101, 180, 0.40);
+  --BRMS-Red: rgba(228, 0, 43, 0.30);
+}
+
+/* Outras seções podem ser adicionadas aqui */
+.section-hero {
+  /* Estilos para seção hero */
+}
+
+.section-produtos {
+  /* Estilos para seção produtos */
+}

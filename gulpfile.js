@@ -1,0 +1,100 @@
+// BR Moto Sport - Gulpfile para Build Process
+// Arquivo: gulpfile.js
+
+const gulp = require('gulp');
+const cleanCSS = require('gulp-clean-css');
+const uglify = require('gulp-uglify');
+const concat = require('gulp-concat');
+const sourcemaps = require('gulp-sourcemaps');
+
+// Configuração do Sass
+const sass = require('gulp-sass')(require('sass'));
+
+// Tarefa: Compilar SCSS para CSS
+function compileSCSS() {
+  return gulp.src('src/scss/main.scss')
+    .pipe(sourcemaps.init())
+    .pipe(sass().on('error', sass.logError))
+    .pipe(sourcemaps.write('.'))
+    .pipe(gulp.dest('dist/css'));
+}
+
+// Tarefa: Compilar CSS puro
+function compileCSS() {
+  return gulp.src('src/css/main.css')
+    .pipe(sourcemaps.init())
+    .pipe(cleanCSS())
+    .pipe(sourcemaps.write('.'))
+    .pipe(gulp.dest('dist/css'));
+}
+
+// Tarefa: Compilar JavaScript - Bibliotecas
+function compileLibsJS() {
+  return gulp.src('src/js/libs.js')
+    .pipe(sourcemaps.init())
+    .pipe(uglify())
+    .pipe(sourcemaps.write('.'))
+    .pipe(gulp.dest('dist/js'));
+}
+
+// Tarefa: Compilar JavaScript - Comum
+function compileCommonJS() {
+  return gulp.src('src/js/common.js')
+    .pipe(sourcemaps.init())
+    .pipe(uglify())
+    .pipe(sourcemaps.write('.'))
+    .pipe(gulp.dest('dist/js'));
+}
+
+// Tarefa: Compilar JavaScript - Páginas específicas
+function compilePagesJS() {
+  return gulp.src('src/js/pages/*.js')
+    .pipe(sourcemaps.init())
+    .pipe(uglify())
+    .pipe(sourcemaps.write('.'))
+    .pipe(gulp.dest('dist/js/pages'));
+}
+
+// Tarefa: Limpar pasta dist
+function clean() {
+  const fs = require('fs');
+  const path = require('path');
+  
+  if (fs.existsSync('dist')) {
+    fs.rmSync('dist', { recursive: true, force: true });
+  }
+  fs.mkdirSync('dist', { recursive: true });
+  fs.mkdirSync('dist/css', { recursive: true });
+  fs.mkdirSync('dist/js', { recursive: true });
+  
+  return Promise.resolve();
+}
+
+// Tarefa: Watch (observar mudanças)
+function watch() {
+  gulp.watch('src/scss/**/*.scss', compileSCSS);
+  gulp.watch('src/css/**/*.css', compileCSS);
+  gulp.watch('src/js/libs.js', compileLibsJS);
+  gulp.watch('src/js/common.js', compileCommonJS);
+  gulp.watch('src/js/pages/*.js', compilePagesJS);
+}
+
+// Tarefas principais
+exports.clean = clean;
+exports.build = gulp.series(clean, gulp.parallel(
+  compileSCSS, 
+  compileCSS, 
+  compileLibsJS, 
+  compileCommonJS, 
+  compilePagesJS
+));
+exports.watch = watch;
+exports.dev = gulp.series(
+  compileSCSS, 
+  compileCSS, 
+  compileLibsJS, 
+  compileCommonJS, 
+  compilePagesJS, 
+  watch
+);
+exports.default = exports.build;
