@@ -13,6 +13,11 @@
 .swiper-produtos.swiper-slide.swiper-slide-active {  
   transform: scale(1.1) !important;
   opacity: 1 !important;
+
+  @include responsivo('tablet') {
+    transform: scale(1.4) !important;
+    opacity: 0.4 !important;
+  }
 }
 
 .swiper-produtos .swiper-pagination-bullet {
