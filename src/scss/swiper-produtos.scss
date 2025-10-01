@@ -28,7 +28,7 @@
   transition: all 0.3s;
 
   @include responsivo('tablet') {
-    min-width: 24px;
+    min-width: 18px;
   }
 }
 
