@@ -10,23 +10,17 @@ const sourcemaps = require('gulp-sourcemaps');
 // Configuração do Sass
 const sass = require('gulp-sass')(require('sass'));
 
-// Tarefa: Compilar SCSS para CSS
+// Tarefa: Compilar SCSS para CSS minificado
 function compileSCSS() {
   return gulp.src('src/scss/main.scss')
     .pipe(sourcemaps.init())
     .pipe(sass().on('error', sass.logError))
-    .pipe(sourcemaps.write('.'))
-    .pipe(gulp.dest('dist/css'));
-}
-
-// Tarefa: Compilar CSS puro
-function compileCSS() {
-  return gulp.src('src/css/main.css')
-    .pipe(sourcemaps.init())
     .pipe(cleanCSS())
     .pipe(sourcemaps.write('.'))
     .pipe(gulp.dest('dist/css'));
 }
+
+// Tarefa removida - usando apenas SCSS
 
 // Tarefa: Compilar JavaScript - Bibliotecas
 function compileLibsJS() {
@@ -73,7 +67,6 @@ function clean() {
 // Tarefa: Watch (observar mudanças)
 function watch() {
   gulp.watch('src/scss/**/*.scss', compileSCSS);
-  gulp.watch('src/css/**/*.css', compileCSS);
   gulp.watch('src/js/libs.js', compileLibsJS);
   gulp.watch('src/js/common.js', compileCommonJS);
   gulp.watch('src/js/pages/*.js', compilePagesJS);
@@ -83,7 +76,6 @@ function watch() {
 exports.clean = clean;
 exports.build = gulp.series(clean, gulp.parallel(
   compileSCSS, 
-  compileCSS, 
   compileLibsJS, 
   compileCommonJS, 
   compilePagesJS
@@ -91,7 +83,6 @@ exports.build = gulp.series(clean, gulp.parallel(
 exports.watch = watch;
 exports.dev = gulp.series(
   compileSCSS, 
-  compileCSS, 
   compileLibsJS, 
   compileCommonJS, 
   compilePagesJS, 

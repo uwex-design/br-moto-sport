@@ -4,9 +4,9 @@ npm-debug.log*
 yarn-debug.log*
 yarn-error.log*
 
-# Arquivos de build
-dist/
-*.map
+# Arquivos de build (comentado para incluir no repo)
+# dist/
+# *.map
 
 # Arquivos do sistema
 .DS_Store
