@@ -11,6 +11,6 @@
 // Override do Webflow para corrigir o z-index do menu mobile
 .w-nav-overlay {
   @include responsivo("tablet") {
-   width: 100%;
+   width: 100%!important;
   }
 }
