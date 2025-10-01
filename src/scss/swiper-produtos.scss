@@ -22,6 +22,10 @@
   border-radius: 0;
   background: rgba(255, 255, 255, 0.20);
   transition: all 0.3s;
+
+  @include responsivo('tablet') {
+    min-width: 24px;
+  }
 }
 
 .swiper-produtos .swiper-pagination-bullet-active {
