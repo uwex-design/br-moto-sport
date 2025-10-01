@@ -4,21 +4,16 @@
 // Importação do Swiper via CDN
 @import url('https://cdn.jsdelivr.net/npm/swiper@12/swiper-bundle.min.css');
 
-// Variáveis
-$primary-color: #ff6b35;
-$secondary-color: #2c3e50;
-$text-color: #333;
-$bg-color: #ffffff;
-$border-radius: 4px;
-$transition: all 0.3s ease;
+// ===== VARIÁVEIS =====
+@import 'variables';
 
-// Cores específicas do projeto BR Moto Sport
-$brms-background: #171717;
-$brms-primary: #E4002B;
-$brms-blue: rgba(38, 101, 180, 0.40);
-$brms-red: rgba(228, 0, 43, 0.30);
+// ===== IMPORTS DOS MÓDULOS =====
+@import 'header';
+@import 'swiper-produtos';
+@import 'swiper-depoimentos';
+@import 'timeline';
 
-// Mixins
+// ===== MIXINS =====
 @mixin flex-center {
   display: flex;
   justify-content: center;
@@ -40,7 +35,7 @@ $brms-red: rgba(228, 0, 43, 0.30);
   }
 }
 
-// Reset e base
+// ===== RESET E BASE =====
 * {
   margin: 0;
   padding: 0;
@@ -58,7 +53,7 @@ body {
   }
 }
 
-// Componentes
+// ===== COMPONENTES =====
 .btn-primary {
   @include button-style($primary-color);
 }
@@ -67,14 +62,14 @@ body {
   @include button-style($secondary-color);
 }
 
-// Layout responsivo
+// ===== LAYOUT RESPONSIVO =====
 .container {
   max-width: 1200px;
   margin: 0 auto;
   padding: 0 20px;
 }
 
-// Animações
+// ===== ANIMAÇÕES =====
 @keyframes fadeInUp {
   from {
     opacity: 0;
@@ -90,64 +85,7 @@ body {
   animation: fadeInUp 0.6s ease-out;
 }
 
-// ===== ESTILOS ESPECÍFICOS DO PROJETO =====
-
-// Header com dropdown
-header.dropdown-open .nav_content {
-  background: rgba(11, 0, 2, 0.60);
-  border-radius: 24px 24px 0 0;
-  border-bottom: none;
-}
-
-header .dropdown-menu {
-  pointer-events: none;
-}
-
-header.dropdown-open .dropdown-menu {
-  pointer-events: all;
-}
-
-header .nav_content {
-  transition: $transition;
-}
-
-header .dropdown-menu {
-  transition: opacity 0.3s ease-in-out;
-}
-
-// Swiper customizado
-.swiper-produtos.swiper-slide {
-  opacity: 0.4;
-  transform: scale(1) translateZ(0);
-  transition: $transition;
-}
-
-.swiper-produtos.swiper-slide.swiper-slide-active {  
-  transform: scale(1.1) !important;
-  opacity: 1 !important;
-}
-
-.swiper-produtos .swiper-pagination-bullet {
-  width: 100%;
-  min-width: 180px;
-  height: 2px;
-  border-radius: 0;
-  background: rgba(255, 255, 255, 0.20);
-  transition: $transition;
-}
-
-.swiper-produtos .swiper-pagination-bullet-active {
-  background: $brms-primary;
-  transition: $transition;
-}
-
-.swiper-produtos .swiper-pagination {
-  top: auto !important;
-  bottom: auto !important;
-  position: absolute !important;
-}
-
-// Seção Marcas Team
+// ===== SEÇÕES ESPECÍFICAS =====
 .section_marcas_team {
   background: 
     radial-gradient(41.27% 50% at 0% 38.8%, $brms-blue 0%, rgba(38, 101, 180, 0) 100%), 

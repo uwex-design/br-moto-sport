@@ -1,0 +1,36 @@
+// BR Moto Sport - Swiper de Produtos
+// Arquivo: src/scss/swiper-produtos.scss
+
+@import 'variables';
+
+// Swiper customizado para produtos
+.swiper-produtos.swiper-slide {
+  opacity: 0.4;
+  transform: scale(1) translateZ(0);
+  transition: all 0.3s ease-in-out;
+}
+
+.swiper-produtos.swiper-slide.swiper-slide-active {  
+  transform: scale(1.1) !important;
+  opacity: 1 !important;
+}
+
+.swiper-produtos .swiper-pagination-bullet {
+  width: 100%;
+  min-width: 180px;
+  height: 2px;
+  border-radius: 0;
+  background: rgba(255, 255, 255, 0.20);
+  transition: all 0.3s;
+}
+
+.swiper-produtos .swiper-pagination-bullet-active {
+  background: $brms-primary;
+  transition: all 0.3s;
+}
+
+.swiper-produtos .swiper-pagination {
+  top: auto !important;
+  bottom: auto !important;
+  position: absolute !important;
+}

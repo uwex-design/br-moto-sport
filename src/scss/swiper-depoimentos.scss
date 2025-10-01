@@ -1,0 +1,58 @@
+// BR Moto Sport - Swiper de Depoimentos
+// Arquivo: src/scss/swiper-depoimentos.scss
+
+@import 'variables';
+
+// Swiper customizado para depoimentos
+.swiper-depoimentos.swiper-slide {
+  opacity: 0.6;
+  transform: scale(0.95) translateZ(0);
+  transition: all 0.4s ease-in-out;
+}
+
+.swiper-depoimentos.swiper-slide.swiper-slide-active {  
+  transform: scale(1) !important;
+  opacity: 1 !important;
+}
+
+.swiper-depoimentos .swiper-pagination-bullet {
+  width: 12px;
+  height: 12px;
+  border-radius: 50%;
+  background: rgba(255, 255, 255, 0.30);
+  transition: all 0.3s;
+  margin: 0 6px;
+}
+
+.swiper-depoimentos .swiper-pagination-bullet-active {
+  background: $brms-primary;
+  transform: scale(1.2);
+  transition: all 0.3s;
+}
+
+.swiper-depoimentos .swiper-pagination {
+  bottom: 20px !important;
+  position: absolute !important;
+}
+
+// Estilos específicos para cards de depoimento
+.depoimento-card {
+  background: white;
+  border-radius: 12px;
+  padding: 30px;
+  box-shadow: 0 8px 25px rgba(0, 0, 0, 0.1);
+  text-align: center;
+  
+  .depoimento-texto {
+    font-style: italic;
+    font-size: 1.1rem;
+    line-height: 1.6;
+    margin-bottom: 20px;
+    color: $text-color;
+  }
+  
+  .depoimento-autor {
+    font-weight: bold;
+    color: $brms-primary;
+  }
+}
