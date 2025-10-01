@@ -2,37 +2,22 @@
 // Arquivo: src/scss/main.scss
 
 // Importação do Swiper via CDN
-@import url('https://cdn.jsdelivr.net/npm/swiper@12/swiper-bundle.min.css');
+@import url("https://cdn.jsdelivr.net/npm/swiper@12/swiper-bundle.min.css");
 
 // ===== VARIÁVEIS =====
-@import 'variables';
+@import "variables";
 
 // ===== IMPORTS DOS MÓDULOS =====
-@import 'header';
-@import 'swiper-produtos';
-@import 'swiper-depoimentos';
-@import 'timeline';
+@import "header";
+@import "swiper-produtos";
+@import "swiper-depoimentos";
+@import "timeline";
 
 // ===== MIXINS =====
 @mixin flex-center {
   display: flex;
   justify-content: center;
   align-items: center;
-}
-
-@mixin button-style($bg-color, $text-color: white) {
-  background-color: $bg-color;
-  color: $text-color;
-  padding: 12px 24px;
-  border: none;
-  border-radius: $border-radius;
-  cursor: pointer;
-  transition: $transition;
-  
-  &:hover {
-    background-color: darken($bg-color, 10%);
-    transform: translateY(-2px);
-  }
 }
 
 // ===== RESET E BASE =====
@@ -43,24 +28,17 @@
 }
 
 body {
-  font-family: 'Arial', sans-serif;
+  font-family: "Arial", sans-serif;
   line-height: 1.6;
   color: $text-color;
   background-color: $bg-color;
-  
+
   &.loaded {
     opacity: 1;
   }
 }
 
 // ===== COMPONENTES =====
-.btn-primary {
-  @include button-style($primary-color);
-}
-
-.btn-secondary {
-  @include button-style($secondary-color);
-}
 
 // ===== LAYOUT RESPONSIVO =====
 .container {
@@ -87,8 +65,15 @@ body {
 
 // ===== SEÇÕES ESPECÍFICAS =====
 .section_marcas_team {
-  background: 
-    radial-gradient(41.27% 50% at 0% 38.8%, $brms-blue 0%, rgba(38, 101, 180, 0) 100%), 
-    radial-gradient(28% 33.92% at 100% 68.86%, $brms-red 0%, rgba(228, 0, 43, 0) 100%), 
+  background: radial-gradient(
+      41.27% 50% at 0% 38.8%,
+      $brms-blue 0%,
+      rgba(38, 101, 180, 0) 100%
+    ),
+    radial-gradient(
+      28% 33.92% at 100% 68.86%,
+      $brms-red 0%,
+      rgba(228, 0, 43, 0) 100%
+    ),
     $brms-background;
 }
