@@ -3,14 +3,14 @@
 
 // Header nav_content modo default
 header .nav_content {
-  transition: all 0.3s ease-in-out;
+  transition: all 0.2s ease-in;
 }
 
 // Header nav_content modo dropdown ativo
 header.dropdown-open .nav_content {
   background: rgba(11, 0, 2, 0.6);
   border-radius: 24px 24px 0 0;
-  border-bottom: none;
+  border-bottom: rgba(255, 255, 255, 0.05);
 }
 
 // Header dropdown-menu modo default
