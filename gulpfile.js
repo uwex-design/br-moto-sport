@@ -49,6 +49,39 @@ function compilePagesJS() {
     .pipe(gulp.dest('dist/js/pages'));
 }
 
+// Tarefa: Compilar JavaScript - Dropdown Desktop
+function compileDropdownDesktopJS() {
+  return gulp.src('src/js/dropdown-desktop.js')
+    .pipe(sourcemaps.init())
+    .pipe(uglify())
+    .pipe(sourcemaps.write('.'))
+    .pipe(gulp.dest('dist/js'));
+}
+
+// Tarefa: Compilar JavaScript - Dropdown Mobile
+function compileDropdownMobileJS() {
+  return gulp.src('src/js/dropdown-mobile.js')
+    .pipe(sourcemaps.init())
+    .pipe(uglify())
+    .pipe(sourcemaps.write('.'))
+    .pipe(gulp.dest('dist/js'));
+}
+
+// Tarefa: Compilar JavaScript - Bundle Unificado
+function compileBundleJS() {
+  return gulp.src([
+    'src/js/libs.js',
+    'src/js/common.js',
+    'src/js/dropdown-desktop.js',
+    'src/js/dropdown-mobile.js'
+  ])
+    .pipe(sourcemaps.init())
+    .pipe(concat('bundle.js'))
+    .pipe(uglify())
+    .pipe(sourcemaps.write('.'))
+    .pipe(gulp.dest('dist/js'));
+}
+
 // Tarefa: Limpar pasta dist
 function clean() {
   const fs = require('fs');
@@ -70,22 +103,22 @@ function watch() {
   gulp.watch('src/js/libs.js', compileLibsJS);
   gulp.watch('src/js/common.js', compileCommonJS);
   gulp.watch('src/js/pages/*.js', compilePagesJS);
+  gulp.watch('src/js/dropdown-desktop.js', compileDropdownDesktopJS);
+  gulp.watch('src/js/dropdown-mobile.js', compileDropdownMobileJS);
 }
 
 // Tarefas principais
 exports.clean = clean;
 exports.build = gulp.series(clean, gulp.parallel(
   compileSCSS, 
-  compileLibsJS, 
-  compileCommonJS, 
+  compileBundleJS,
   compilePagesJS
 ));
 exports.watch = watch;
 exports.dev = gulp.series(
   compileSCSS, 
-  compileLibsJS, 
-  compileCommonJS, 
-  compilePagesJS, 
+  compileBundleJS,
+  compilePagesJS,
   watch
 );
 exports.default = exports.build;
