@@ -29,7 +29,8 @@ header.dropdown-open .dropdown-menu {
 }
 .dropdown-menu {
   transition: all 0.3s;
-  transform: translateX(-50%) translateY(-40px);
+  height: auto;
+  min-height: 100px;
 }
 
 .dropdown-menu.active {
