@@ -1,212 +1,92 @@
 /**
  * BR Moto Sport - Dropdown Desktop
- * Funcionalidade de dropdown para desktop (>1024px)
+ * Funciona apenas em desktop (>1024px)
  * Arquivo: src/js/dropdown-desktop.js
  */
 
-(() => {
-  'use strict';
+document.addEventListener('DOMContentLoaded', function() {
+  // Função unificada para dropdown - APENAS DESKTOP
+  function initDropdownMenu() {
+    // Executa apenas em desktop (>1024px)
+    if (window.innerWidth <= 1024) return;
 
-  // Configurações
-  const CONFIG = {
-    BREAKPOINT: 1024,
-    SELECTORS: {
-      dropdownBtn: '.btn-dropdown',
-      dropdownMenu: '.dropdown-menu',
-      header: '.header-main'
-    },
-    CLASSES: {
-      active: 'active',
-      headerOpen: 'dropdown-open'
-    },
-    TIMING: {
-      hoverDelay: 100,
-      resizeDelay: 150
-    }
-  };
-
-  // Cache de elementos
-  let elements = {};
-  let isInitialized = false;
-  let hoverTimeout = null;
-
-  /**
-   * Verifica se está em desktop
-   */
-  function isDesktop() {
-    return window.innerWidth > CONFIG.BREAKPOINT;
-  }
-
-  /**
-   * Cache de elementos DOM
-   */
-  function cacheElements() {
-    elements = {
-      dropdownBtn: document.querySelector(CONFIG.SELECTORS.dropdownBtn),
-      dropdownMenu: document.querySelector(CONFIG.SELECTORS.dropdownMenu),
-      header: document.querySelector(CONFIG.SELECTORS.header)
-    };
-  }
-
-  /**
-   * Fecha o dropdown
-   */
-  function closeDropdown() {
-    if (!elements.dropdownMenu || !elements.dropdownBtn) return;
-
-    elements.dropdownMenu.classList.remove(CONFIG.CLASSES.active);
-    elements.dropdownBtn.classList.remove(CONFIG.CLASSES.active);
+    const dropdownBtn = document.querySelector('.btn-dropdown');
+    const dropdownMenu = document.querySelector('.dropdown-menu');
+    const header = document.querySelector('.header-main');
     
-    if (elements.header) {
-      elements.header.classList.remove(CONFIG.CLASSES.headerOpen);
-    }
-  }
-
-  /**
-   * Abre o dropdown
-   */
-  function openDropdown() {
-    if (!elements.dropdownMenu || !elements.dropdownBtn) return;
-
-    elements.dropdownMenu.classList.add(CONFIG.CLASSES.active);
-    elements.dropdownBtn.classList.add(CONFIG.CLASSES.active);
-    
-    if (elements.header) {
-      elements.header.classList.add(CONFIG.CLASSES.headerOpen);
-    }
-  }
-
-  /**
-   * Toggle do dropdown
-   */
-  function toggleDropdown() {
-    if (!elements.dropdownMenu) return;
-
-    const isActive = elements.dropdownMenu.classList.contains(CONFIG.CLASSES.active);
-    
-    if (isActive) {
-      closeDropdown();
-    } else {
-      openDropdown();
-    }
-  }
-
-  /**
-   * Handler para clique no botão
-   */
-  function handleButtonClick(e) {
-    if (!isDesktop()) return;
-    
-    e.preventDefault();
-    e.stopPropagation();
-    toggleDropdown();
-  }
-
-  /**
-   * Handler para mouse leave do dropdown
-   */
-  function handleDropdownLeave() {
-    if (!isDesktop()) return;
-    closeDropdown();
-  }
-
-  /**
-   * Handler para mouse leave do botão
-   */
-  function handleButtonLeave() {
-    if (!isDesktop()) return;
-    
-    hoverTimeout = setTimeout(() => {
-      if (!elements.dropdownMenu.matches(':hover')) {
-        closeDropdown();
+    if (dropdownBtn && dropdownMenu) {
+      // Função para fechar dropdown
+      function closeDropdown() {
+        dropdownMenu.classList.remove('active');
+        dropdownBtn.classList.remove('active');
+        if (header) {
+          header.classList.remove('dropdown-open');
+        }
       }
-    }, CONFIG.TIMING.hoverDelay);
-  }
-
-  /**
-   * Handler para mouse enter do dropdown
-   */
-  function handleDropdownEnter() {
-    if (hoverTimeout) {
-      clearTimeout(hoverTimeout);
-      hoverTimeout = null;
-    }
-  }
-
-  /**
-   * Handler para cliques fora
-   */
-  function handleOutsideClick(e) {
-    if (!isDesktop()) return;
-    
-    if (!e.target.closest(CONFIG.SELECTORS.dropdownBtn) && 
-        !e.target.closest(CONFIG.SELECTORS.dropdownMenu)) {
-      closeDropdown();
-    }
-  }
-
-  /**
-   * Configura event listeners
-   */
-  function setupEventListeners() {
-    if (!elements.dropdownBtn || !elements.dropdownMenu) return;
-
-    // Remove listeners antigos se existirem
-    elements.dropdownBtn.removeEventListener('click', handleButtonClick);
-    elements.dropdownMenu.removeEventListener('mouseleave', handleDropdownLeave);
-    elements.dropdownBtn.removeEventListener('mouseleave', handleButtonLeave);
-    elements.dropdownMenu.removeEventListener('mouseenter', handleDropdownEnter);
-
-    // Adiciona novos listeners
-    elements.dropdownBtn.addEventListener('click', handleButtonClick);
-    elements.dropdownMenu.addEventListener('mouseleave', handleDropdownLeave);
-    elements.dropdownBtn.addEventListener('mouseleave', handleButtonLeave);
-    elements.dropdownMenu.addEventListener('mouseenter', handleDropdownEnter);
-  }
-
-  /**
-   * Inicializa o dropdown desktop
-   */
-  function initDropdownDesktop() {
-    if (!isDesktop() || isInitialized) return;
-    
-    cacheElements();
-    setupEventListeners();
-    isInitialized = true;
-  }
-
-  /**
-   * Handler debounced para resize
-   */
-  function handleResize() {
-    clearTimeout(window.desktopDropdownResizeTimeout);
-    window.desktopDropdownResizeTimeout = setTimeout(() => {
-      if (isDesktop()) {
-        initDropdownDesktop();
-      } else {
-        // Limpa estado quando vai para mobile
-        isInitialized = false;
-        elements = {};
-        closeDropdown();
+      
+      // Função para abrir dropdown
+      function openDropdown() {
+        dropdownMenu.classList.add('active');
+        dropdownBtn.classList.add('active');
+        if (header) {
+          header.classList.add('dropdown-open');
+        }
       }
-    }, CONFIG.TIMING.resizeDelay);
-  }
-
-  /**
-   * Inicialização
-   */
-  function init() {
-    if (document.readyState === "loading") {
-      document.addEventListener("DOMContentLoaded", initDropdownDesktop);
-    } else {
-      setTimeout(initDropdownDesktop, 100);
+      
+      // Click no botão - APENAS DESKTOP
+      dropdownBtn.addEventListener('click', function(e) {
+        // Verifica novamente se é desktop
+        if (window.innerWidth <= 1024) return;
+        
+        e.preventDefault();
+        e.stopPropagation();
+        
+        // Toggle das classes
+        if (dropdownMenu.classList.contains('active')) {
+          closeDropdown();
+        } else {
+          openDropdown();
+        }
+      });
+      
+      // Mouse leave no dropdown (fechar quando sair da área) - APENAS DESKTOP
+      dropdownMenu.addEventListener('mouseleave', function() {
+        if (window.innerWidth <= 1024) return;
+        closeDropdown();
+      });
+      
+      // Mouse leave no botão (fechar quando sair do botão) - APENAS DESKTOP
+      dropdownBtn.addEventListener('mouseleave', function() {
+        if (window.innerWidth <= 1024) return;
+        
+        // Pequeno delay para evitar fechamento acidental
+        setTimeout(() => {
+          // Verificar se o mouse não está sobre o dropdown
+          if (!dropdownMenu.matches(':hover')) {
+            closeDropdown();
+          }
+        }, 100);
+      });
+      
+      // Fechar ao clicar fora - APENAS DESKTOP
+      document.addEventListener('click', function(e) {
+        if (window.innerWidth <= 1024) return;
+        
+        if (!e.target.closest('.btn-dropdown') && 
+            !e.target.closest('.dropdown-menu')) {
+          closeDropdown();
+        }
+      });
     }
-
-    // Event listeners globais
-    window.addEventListener("resize", handleResize);
-    document.addEventListener("click", handleOutsideClick);
   }
-
-  // Inicializa
-  init();
-})();
+  
+  // Inicializar dropdown desktop
+  initDropdownMenu();
+  
+  // Reinicializar no resize
+  window.addEventListener('resize', function() {
+    // Delay para evitar execução excessiva
+    clearTimeout(window.dropdownResizeTimeout);
+    window.dropdownResizeTimeout = setTimeout(initDropdownMenu, 100);
+  });
+});

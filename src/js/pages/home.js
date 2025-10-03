@@ -32,7 +32,7 @@ function initHeroSection() {
   }
 }
 
-// Slider de produtos
+// Slider de produtos (se necessário)
 function initProdutosSlider() {
   const slider = document.querySelector('.swiper-produtos');
   

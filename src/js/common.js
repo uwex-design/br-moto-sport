@@ -74,6 +74,25 @@
     initLazyLoad();
     initMobileMenu();
     initSmoothScroll();
+    
+    // Inicializar Swiper se disponível
+    initSwiperMarcas();
+  }
+
+  /**
+   * Inicializa Swiper das marcas (se disponível)
+   */
+  function initSwiperMarcas() {
+    if (typeof Swiper !== 'undefined') {
+      const swiperMarcas = document.querySelector(".swiper.swiper-marcas");
+      
+      if (swiperMarcas) {
+        new Swiper(".swiper.swiper-marcas", {
+          slidesPerView: 1.5,
+          spaceBetween: 0,
+        });
+      }
+    }
   }
 
   // Inicialização
