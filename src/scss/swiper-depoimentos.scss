@@ -1,8 +1,13 @@
 // BR Moto Sport - Swiper de Depoimentos
 // Arquivo: src/scss/swiper-depoimentos.scss
 
-@import 'variables';
-.swiper-pagination .swiper-depoimentos .swiper-pagination-bullets {
-    background: $white-color;
-    opacity: 0.3;
+@import "variables";
+.swiper-depoimentos .swiper-pagination-bullet {
+  background: white !important;
+  opacity: 0.3;
+}
+
+.swiper-depoimentos .swiper-pagination-bullet-active {
+  background: #e4002b !important;
+  opacity: 1;
 }
