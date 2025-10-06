@@ -4,20 +4,20 @@
  */
 
 (() => {
-  'use strict';
+  "use strict";
 
   // Configurações
   const CONFIG = {
     SELECTORS: {
-      menuToggle: '.menu-toggle',
-      mobileMenu: '.mobile-menu',
-      internalLinks: 'a[href^="#"]'
+      menuToggle: ".menu-toggle",
+      mobileMenu: ".mobile-menu",
+      internalLinks: 'a[href^="#"]',
     },
     CLASSES: {
-      loaded: 'loaded',
-      menuOpen: 'menu-open',
-      active: 'active'
-    }
+      loaded: "loaded",
+      menuOpen: "menu-open",
+      active: "active",
+    },
   };
 
   /**
@@ -35,9 +35,9 @@
   function initMobileMenu() {
     const menuToggle = document.querySelector(CONFIG.SELECTORS.menuToggle);
     const mobileMenu = document.querySelector(CONFIG.SELECTORS.mobileMenu);
-    
+
     if (menuToggle && mobileMenu) {
-      menuToggle.addEventListener('click', () => {
+      menuToggle.addEventListener("click", () => {
         mobileMenu.classList.toggle(CONFIG.CLASSES.active);
         menuToggle.classList.toggle(CONFIG.CLASSES.active);
         document.body.classList.toggle(CONFIG.CLASSES.menuOpen);
@@ -49,13 +49,15 @@
    * Inicializa smooth scroll para links internos
    */
   function initSmoothScroll() {
-    const internalLinks = document.querySelectorAll(CONFIG.SELECTORS.internalLinks);
-    
-    internalLinks.forEach(link => {
-      link.addEventListener('click', function(e) {
+    const internalLinks = document.querySelectorAll(
+      CONFIG.SELECTORS.internalLinks
+    );
+
+    internalLinks.forEach((link) => {
+      link.addEventListener("click", function (e) {
         e.preventDefault();
-        const target = this.getAttribute('href');
-        
+        const target = this.getAttribute("href");
+
         if (window.BRMotoSport?.smoothScroll) {
           window.BRMotoSport.smoothScroll(target);
         }
@@ -69,12 +71,12 @@
   function init() {
     // Adicionar classe loaded ao body
     document.body.classList.add(CONFIG.CLASSES.loaded);
-    
+
     // Inicializar funcionalidades
     initLazyLoad();
     initMobileMenu();
     initSmoothScroll();
-    
+
     // Inicializar Swiper se disponível
     initSwiperMarcas();
   }
@@ -83,9 +85,9 @@
    * Inicializa Swiper das marcas (se disponível)
    */
   function initSwiperMarcas() {
-    if (typeof Swiper !== 'undefined') {
+    if (typeof Swiper !== "undefined") {
       const swiperMarcas = document.querySelector(".swiper.swiper-marcas");
-      
+
       if (swiperMarcas) {
         new Swiper(".swiper.swiper-marcas", {
           slidesPerView: 1.5,

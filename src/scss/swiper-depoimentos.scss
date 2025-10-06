@@ -2,3 +2,7 @@
 // Arquivo: src/scss/swiper-depoimentos.scss
 
 @import 'variables';
+.swiper-pagination .swiper-depoimentos .swiper-pagination-bullets {
+    background: $white-color;
+    opacity: 0.3;
+}
